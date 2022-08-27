@@ -3,7 +3,7 @@ import axios from 'axios';
 import cookieParser from "cookie-parser";
 import cors from 'cors';
 
-const PORT = 3000;
+const PORT = 3001;
 const BASE_URL = "https://www.nseindia.com/";
 var CKSTR;
 
@@ -18,7 +18,7 @@ const OCI = "api/option-chain-indices/";
 
 // GETTING THE OPTION CHAIN INDICES NAMES OR SYMBOLS
 app.post('/', (req, res)=>{
-    // console.log("askdhjas");
+    console.log("askdhjas");
     axios.get(BASE_URL+OCI, {
         withCredentials : true,
         headers : {
@@ -55,7 +55,7 @@ function getSymbolsInArrayForm(data)
 
 
 // GETTING THE INDEX DATA
-app.post('/getIndexData', (req, res)=>{
+app.get('/getIndexData', (req, res)=>{
 
     console.log(req.data);
     res.send(req.data);
@@ -81,24 +81,10 @@ app.post('/getIndexData', (req, res)=>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // COOKIES ARE LOADED DURING THE PAGE IS LOADING
 app.listen(PORT, ()=>{
-    console.log("listening on port 3000");
-    cookies()
+    console.log("listening on port 3001");
+    cookies().then(()=>console.log(CKSTR))
 });
 
 async function cookies()
